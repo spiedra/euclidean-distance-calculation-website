@@ -1,11 +1,15 @@
 import React from 'react'
-import Button from '@mui/material/Button'
+import { Outlet } from 'react-router-dom'
+
+import Box from '@mui/material/Box'
 
 function App () {
   return (
-   <div>
-       <Button variant="contained">Hello World</Button>
-   </div>
+    <>
+      <Box component="main">
+        <Outlet />
+      </Box>
+    </>
   )
 }
 
