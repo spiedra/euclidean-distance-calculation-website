@@ -1,15 +1,6 @@
 import { createTheme } from '@mui/material/styles'
 
 export const theme = createTheme({
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        contained: {
-          fontSize: '0.875rem'
-        }
-      }
-    }
-  },
   palette: {
     type: 'light',
     primary: {
@@ -17,6 +8,11 @@ export const theme = createTheme({
     },
     secondary: {
       main: '#f50057'
+    },
+    text: {
+      primary: 'rgba(0,0,0,0.87)',
+      secondary: '#ffffff',
+      disabled: 'rgba(255, 255, 255, 0.7)'
     }
   }
 })
