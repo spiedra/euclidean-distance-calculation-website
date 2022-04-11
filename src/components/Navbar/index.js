@@ -66,7 +66,7 @@ const Navbar = () => {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            sx={{ mr: 2, display: { md: 'none' } }}
           >
             <MenuIcon />
           </IconButton>
@@ -75,7 +75,10 @@ const Navbar = () => {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Box component="nav" sx={navbarStyles.nav}>
+      <Box
+        component="nav"
+        sx={navbarStyles.nav}
+      >
         <Drawer
           variant="temporary"
           open={isOpen}
@@ -84,7 +87,7 @@ const Navbar = () => {
             keepMounted: true
           }}
           sx={{
-            display: { xs: 'block', sm: 'none' },
+            display: { xs: 'block', md: 'none' },
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
               width: drawerWidth
@@ -96,7 +99,7 @@ const Navbar = () => {
         <Drawer
           variant="permanent"
           sx={{
-            display: { xs: 'none', sm: 'block' },
+            display: { xs: 'none', md: 'block' },
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
               width: drawerWidth,

@@ -20,7 +20,7 @@ export const navbarStyles = {
     justifyContent: 'flex-end'
   },
   nav: {
-    width: { sm: drawerWidth },
+    width: { md: drawerWidth },
     flexShrink: { sm: 0 }
   }
 }
