@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router'
 
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
@@ -14,6 +15,7 @@ import Typography from '@mui/material/Typography'
 
 import MenuIcon from '@mui/icons-material/Menu'
 import CloseIcon from '@mui/icons-material/Close'
+import HomeIcon from '@mui/icons-material/Home'
 
 import { navbarItems } from './consts/navbarItems'
 import { navbarStyles } from './styles'
@@ -22,6 +24,7 @@ const drawerWidth = 300
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const navigate = useNavigate()
 
   const handleDrawerToggle = () => {
     setIsOpen(!isOpen)
@@ -41,12 +44,24 @@ const Navbar = () => {
       </Toolbar>
       <Divider />
       <List>
+        <ListItem
+          button
+          onClick={() => {
+            navigate('/')
+          }}
+        >
+          <ListItemIcon sx={navbarStyles.icons}>{<HomeIcon />}</ListItemIcon>
+          <ListItemText sx={navbarStyles.text} primary="Inicio" />
+        </ListItem>
+      </List>
+      <Divider />
+      <List>
         {navbarItems.map((item, index) => (
           <ListItem
             button
             key={item.id}
             onClick={() => {
-              console.log('hola')
+              navigate(item.route)
             }}
           >
             <ListItemIcon sx={navbarStyles.icons}>{item.icon}</ListItemIcon>
@@ -75,10 +90,7 @@ const Navbar = () => {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Box
-        component="nav"
-        sx={navbarStyles.nav}
-      >
+      <Box component="nav" sx={navbarStyles.nav}>
         <Drawer
           variant="temporary"
           open={isOpen}

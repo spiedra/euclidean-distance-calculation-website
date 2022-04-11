@@ -9,6 +9,11 @@ import { theme } from '../src/styles/theme'
 import App from './App'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
+import LearningStyle from './pages/LearningStyle'
+import NetworkClassification from './pages/NetworkClassification'
+import StudentGender from './pages/StudentGender'
+import TeacherType from './pages/TeacherType'
+import StudentHomeCampus from './pages/StudentHomeCampus'
 
 const container = document.getElementById('root')
 const root = ReactDOM.createRoot(container)
@@ -20,6 +25,11 @@ root.render(
         <Routes>
           <Route path="/" element={<App />}>
             <Route index element={<Home />} />
+            <Route path='learning-style' element={<LearningStyle />} />
+            <Route path='network-classification' element={<NetworkClassification />} />
+            <Route path='student-gender' element={<StudentGender />} />
+            <Route path='teacher-type' element={<TeacherType />} />
+            <Route path='student-home-campus' element={<StudentHomeCampus />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
