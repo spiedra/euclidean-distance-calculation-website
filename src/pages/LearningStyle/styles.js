@@ -9,6 +9,9 @@ export const learningStyles = {
     textAlign: 'justify'
   },
   select: {
+    '& label.Mui-focused': {
+      color: theme.palette.primary.main
+    },
     '& .MuiInputLabel-root': {
       color: 'black'
     },
@@ -31,7 +34,7 @@ export const learningStyles = {
     }
   },
   button: {
-    marginTop: '1rem',
+    marginTop: '1.5rem',
     marginBottom: '2rem'
   }
 }

@@ -84,7 +84,7 @@ const LearningStyle = () => {
         component="form"
         my="3rem"
         sx={{
-          '& .MuiTextField-root': { m: 1, width: '20ch' }
+          '& .MuiTextField-root': { width: '30ch' }
         }}
         noValidate
         autoComplete="off"
@@ -100,7 +100,6 @@ const LearningStyle = () => {
             <Grid item key={item.value}>
               <TextField
                 sx={learningStyles.select}
-                id={item.value}
                 name={item.value}
                 select
                 label={item.label}
@@ -122,7 +121,7 @@ const LearningStyle = () => {
           sx={learningStyles.button}
           onClick={handleSubmit}
         >
-          Eviar
+          Enviar
         </Button>
       </Box>
     </Box>
