@@ -5,6 +5,8 @@ import { learningStyles } from './styles'
 
 import { words, defaultValues } from './consts'
 
+import { getSumOfColumns } from '../../utils/getSumOfColumns'
+
 const LearningStyle = () => {
   const [inputs, setInputs] = useState(defaultValues)
 
@@ -19,39 +21,8 @@ const LearningStyle = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    const ec =
-      inputs.Receptivamente +
-      inputs.Sintiendo +
-      inputs.Aceptando +
-      inputs.Intuitivamente +
-      inputs.Orientado_al_presente +
-      inputs.Aprendo_mas_de_la_experiencia
 
-    const or =
-      inputs.Ensayando +
-      inputs.Observando +
-      inputs.Observando_ +
-      inputs.Reflexivamente +
-      inputs.Aprendo_mas_de_la_observacion +
-      inputs.Reservado
-
-    const ca =
-      inputs.Analiticamente +
-      inputs.Pensando +
-      inputs.Evaluando +
-      inputs.Logicamente +
-      inputs.Aprendo_mas_de_la_conceptualizacion +
-      inputs.Racional
-
-    const ea =
-      inputs.Practicando +
-      inputs.Haciendo +
-      inputs.Activo +
-      inputs.Pragmatico +
-      inputs.Aprendo_mas_de_la_experimentacion +
-      inputs.Abierto
-
-    console.log(ec + ' ' + or + ' ' + ca + ' ' + ea)
+    console.log(getSumOfColumns(inputs))
   }
 
   return (
@@ -84,7 +55,7 @@ const LearningStyle = () => {
         component="form"
         my="3rem"
         sx={{
-          '& .MuiTextField-root': { width: '30ch' }
+          '& .MuiTextField-root': { my: 1, width: { xs: '25ch', sm: '30ch' } }
         }}
         noValidate
         autoComplete="off"
