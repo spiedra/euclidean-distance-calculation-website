@@ -17,7 +17,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 import CloseIcon from '@mui/icons-material/Close'
 import HomeIcon from '@mui/icons-material/Home'
 
-import { navbarItems } from './consts/navbarItems'
+import { navbarItems } from './consts/index'
 import { navbarStyles } from './styles'
 
 const drawerWidth = 300

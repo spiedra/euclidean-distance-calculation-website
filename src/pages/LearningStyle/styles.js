@@ -29,5 +29,9 @@ export const learningStyles = {
         borderColor: theme.palette.primary.main
       }
     }
+  },
+  button: {
+    marginTop: '1rem',
+    marginBottom: '2rem'
   }
 }

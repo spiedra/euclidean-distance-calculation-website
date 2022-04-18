@@ -1,151 +1,16 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
-import {
-  Box,
-  Container,
-  Grid,
-  FormControl,
-  Select,
-  MenuItem,
-  Button,
-  FormLabel,
-  TextField
-} from '@mui/material'
+import { Box, Grid, MenuItem, Button, TextField } from '@mui/material'
+
 import { learningStyles } from './styles'
 
-const defaultValues = {}
+import { words, defaultValues } from './consts'
 
-const words = [
-  {
-    word: 'Discerniendo'
-  },
-  {
-    word: 'Receptivamente'
-  },
-  {
-    word: 'Sintiendo'
-  },
-  {
-    word: 'Aceptando'
-  },
-  {
-    word: 'Intuitivamente'
-  },
-  {
-    word: 'Abstracto'
-  },
-  {
-    word: 'Orientado al presente'
-  },
-  {
-    word: 'Aprendo más de la experiencia'
-  },
-  {
-    word: 'Emotivo'
-  },
-  {
-    word: 'Ensayado'
-  },
-  {
-    word: 'Relacionando'
-  },
-  {
-    word: 'Arriesgado'
-  },
-  {
-    word: 'Productivamente'
-  },
-  {
-    word: 'Observando'
-  },
-  {
-    word: 'Reflexivamente'
-  },
-  {
-    word: 'Aprendo más de la observación'
-  },
-  {
-    word: 'Reservado'
-  },
-  {
-    word: 'Involucrándome'
-  },
-  {
-    word: 'Analíticamente'
-  },
-  {
-    word: 'Pensando'
-  },
-  {
-    word: 'Evaluando'
-  },
-  {
-    word: 'Lógicamente'
-  },
-  {
-    word: 'Concreto'
-  },
-  {
-    word: 'Orientado hacia el futuro'
-  },
-  {
-    word: 'Aprendo más de la conceptualización'
-  },
-  {
-    word: 'Racional'
-  },
-  {
-    word: 'Practicando'
-  },
-  {
-    word: 'Impaciarlmente'
-  },
-  {
-    word: 'Haciendo'
-  },
-  {
-    word: 'Con Cautela'
-  },
-  {
-    word: 'Cuestionando'
-  },
-  {
-    word: 'Activo'
-  },
-  {
-    word: 'Pragmático'
-  },
-  {
-    word: 'Aprndo más de la experimentación'
-  },
-  {
-    word: 'Abierto'
-  }
-]
-
-const options = [
-  {
-    value: 1,
-    label: '1'
-  },
-  {
-    value: 2,
-    label: '2'
-  },
-  {
-    value: 3,
-    label: '3'
-  },
-  {
-    value: 4,
-    label: 4
-  }
-]
 const LearningStyle = () => {
   const [inputs, setInputs] = useState(defaultValues)
 
   const handleChange = (e) => {
     const { name, value } = e.target
+
     setInputs({
       ...inputs,
       [name]: value
@@ -154,7 +19,39 @@ const LearningStyle = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log(inputs)
+    const ec =
+      inputs.Receptivamente +
+      inputs.Sintiendo +
+      inputs.Aceptando +
+      inputs.Intuitivamente +
+      inputs.Orientado_al_presente +
+      inputs.Aprendo_mas_de_la_experiencia
+
+    const or =
+      inputs.Ensayando +
+      inputs.Observando +
+      inputs.Observando_ +
+      inputs.Reflexivamente +
+      inputs.Aprendo_mas_de_la_observacion +
+      inputs.Reservado
+
+    const ca =
+      inputs.Analiticamente +
+      inputs.Pensando +
+      inputs.Evaluando +
+      inputs.Logicamente +
+      inputs.Aprendo_mas_de_la_conceptualizacion +
+      inputs.Racional
+
+    const ea =
+      inputs.Practicando +
+      inputs.Haciendo +
+      inputs.Activo +
+      inputs.Pragmatico +
+      inputs.Aprendo_mas_de_la_experimentacion +
+      inputs.Abierto
+
+    console.log(ec + ' ' + or + ' ' + ca + ' ' + ea)
   }
 
   return (
@@ -183,46 +80,51 @@ const LearningStyle = () => {
         que menos caracteriza su estilo. Tenga cuidado de ubicar un número
         distinto al lado de cada palabra en la misma línea.
       </Box>
-        <Box
-          component="form"
-          my='3rem'
-          sx={{
-            '& .MuiTextField-root': { m: 1, width: '20ch' }
-          }}
-          noValidate
-          autoComplete="off"
-          onSubmit={handleSubmit}
+      <Box
+        component="form"
+        my="3rem"
+        sx={{
+          '& .MuiTextField-root': { m: 1, width: '20ch' }
+        }}
+        noValidate
+        autoComplete="off"
+        onSubmit={handleSubmit}
+      >
+        <Grid
+          container
+          justifyContent="center"
+          spacing={{ xs: 0.5, sm: 0.5, md: 2 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
         >
-          <Grid
-            container
-            justifyContent='center'
-            spacing={{ xs: 2, md: 3 }}
-            columns={{ xs: 4, sm: 8, md: 12 }}
-          >
-            {words.map((item) => (
-              <Grid item key={item.word}>
-                <TextField
-                  sx={learningStyles.select}
-                  id={item.word}
-                  name={item.word}
-                  select
-                  label={item.word}
-                  value={inputs[item.word] || '1'}
-                  onChange={handleChange}
-                >
-                  {options.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </TextField>
-              </Grid>
-            ))}
-          </Grid>
-          <Button variant="contained" color="primary" type="submit">
-            Submit
-          </Button>
-        </Box>
+          {words.map((item) => (
+            <Grid item key={item.value}>
+              <TextField
+                sx={learningStyles.select}
+                id={item.value}
+                name={item.value}
+                select
+                label={item.label}
+                value={inputs[item.value]}
+                onChange={handleChange}
+              >
+                <MenuItem value={1}>1</MenuItem>
+                <MenuItem value={2}>2</MenuItem>
+                <MenuItem value={3}>3</MenuItem>
+                <MenuItem value={4}>4</MenuItem>
+              </TextField>
+            </Grid>
+          ))}
+        </Grid>
+        <Button
+          variant="contained"
+          color="primary"
+          type="submit"
+          sx={learningStyles.button}
+          onClick={handleSubmit}
+        >
+          Eviar
+        </Button>
+      </Box>
     </Box>
   )
 }
