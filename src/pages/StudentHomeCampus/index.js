@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
+import { Controller, useForm } from 'react-hook-form'
 import { Box, Grid, MenuItem, Button, TextField } from '@mui/material'
 
 import { learningStyles } from './styles'
@@ -16,26 +17,20 @@ import ModalResponse from '../../components/ModalResponse'
 const LearningStyle = () => {
   const [inputs, setInputs] = useState(defaultValues)
   const [result, setResult] = useState({ result: '' })
-  const [open, setOpen] = useState(false)
-  const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
+  const {
+    control,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
+    defaultValues: {
+      learningStyle: '',
+      gpa: '',
+      genre: ''
+    }
+  })
 
-  const handleChange = (e) => {
-    const { name, value } = e.target
-
-    setInputs({
-      ...inputs,
-      [name]: value
-    })
-  }
-
-  const handleSubmit = async (event) => {
-    event.preventDefault()
-
-    await createInputs(getSumOfColumns(inputs)).then((response) => {
-      setResult(response)
-      setOpen(true)
-    })
+  const onSubmit = async (values) => {
+    alert(JSON.stringify(values))
   }
 
   return (
@@ -65,54 +60,71 @@ const LearningStyle = () => {
               width: { xs: '25ch', sm: '30ch' }
             }
           }}
-          noValidate
           autoComplete="off"
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
         >
           <Grid
             container
-            justifyContent="center"
+            justifyContent="flex-start"
             spacing={{ xs: 0.5, sm: 0.5, md: 2 }}
             columns={{ xs: 4, sm: 8, md: 12 }}
           >
-            <Grid item >
-                <TextField
-                  sx={learningStyles.select}
-                  name='learning-style'
-                  select
-                  label='Estilo de aprendizaje'
-                  value={inputs[0]}
-                  onChange={handleChange}
-                >
-                  <MenuItem value={1}>Asimilador</MenuItem>
-                  <MenuItem value={2}>Acomodador</MenuItem>
-                  <MenuItem value={3}>Divergente</MenuItem>
-                  <MenuItem value={4}>Convergente</MenuItem>
-                </TextField>
-              </Grid>
-              <Grid item >
-                <TextField
-                  sx={learningStyles.select}
-                  name='learning-style'
-                  label='Último promedio de matrícula'
-                  value={inputs[0]}
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item >
-                <TextField
-                  sx={learningStyles.select}
-                  name='learning-style'
-                  label='Último promedio de matrícula'
-                  value={inputs[0]}
-                  onChange={handleChange}
-                >
-                  <MenuItem value={1}>1</MenuItem>
-                  <MenuItem value={2}>2</MenuItem>
-                  <MenuItem value={3}>3</MenuItem>
-                  <MenuItem value={4}>4</MenuItem>
-                </TextField>
-              </Grid>
+            <Grid item>
+              <Controller
+                control={control}
+                name="learningStyle"
+                rules={{ required: true }}
+                render={({ field: { ...field } }) => (
+                  <TextField
+                    sx={learningStyles.select}
+                    {...field}
+                    select
+                    error={!!errors.learningStyle}
+                    label="Estilo de aprendizaje"
+                  >
+                    <MenuItem value={1}>Asimilador</MenuItem>
+                    <MenuItem value={2}>Acomodador</MenuItem>
+                    <MenuItem value={3}>Divergente</MenuItem>
+                    <MenuItem value={4}>Convergente</MenuItem>
+                  </TextField>
+                )}
+              />
+            </Grid>
+            <Grid item>
+              <Controller
+                control={control}
+                name="gpa"
+                rules={{ required: true }}
+                render={({ field: { ...field } }) => (
+                  <TextField
+                    sx={learningStyles.select}
+                    {...field}
+                    type='number'
+                    error={!!errors.gpa}
+                    label="Último promedio de matrícula"
+                  />
+                )}
+              />
+            </Grid>
+            <Grid item>
+              <Controller
+                control={control}
+                name="genre"
+                rules={{ required: true }}
+                render={({ field: { ...field } }) => (
+                  <TextField
+                    sx={learningStyles.select}
+                    {...field}
+                    select
+                    error={!!errors.genre}
+                    label="Sexo"
+                  >
+                    <MenuItem value={1}>Masculino</MenuItem>
+                    <MenuItem value={2}>Femenino</MenuItem>
+                  </TextField>
+                )}
+              />
+            </Grid>
           </Grid>
           <Button
             variant="contained"
@@ -126,13 +138,13 @@ const LearningStyle = () => {
         </Box>
       </Box>
 
-      <ModalResponse
+      {/* <ModalResponse
         open={open}
         handleOpen={handleOpen}
         handleClose={handleClose}
         title="Estilo de aprendizaje"
         description={`Su tipo de aprendizaje es: ${result.result}`}
-      />
+      /> */}
     </>
   )
 }
