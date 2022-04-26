@@ -6,13 +6,12 @@ import { Box, Grid, MenuItem, Button, TextField } from '@mui/material'
 
 import { learningStyles } from './styles'
 
-import { getSumOfColumns } from '../../utils/getSumOfColumns'
 import ModalResponse from '../../components/ModalResponse'
 import useModal from '../../hooks/useModal'
 import { createInputs } from '../../services/Posts'
 
 const baseURL =
-  'https://euclidean-distance-calculation-api.vercel.app/euclidean-distance-api/learning-style/1/calculation'
+  'http://localhost:8080/euclidean-distance-api/student-campus/calculation'
 
 const LearningStyle = () => {
   const [result, setResult] = useState({ result: '' })
@@ -31,8 +30,7 @@ const LearningStyle = () => {
   })
 
   const onSubmit = (values) => {
-    console.log(values)
-    createInputs(baseURL, getSumOfColumns(values)).then((response) => {
+    createInputs(baseURL, values).then((response) => {
       setResult(response)
       setOpen()
     })
@@ -147,8 +145,8 @@ const LearningStyle = () => {
         open={isOpen}
         handleOpen={setOpen}
         handleClose={setClose}
-        title="Estilo de aprendizaje"
-        description={`Su tipo de aprendizaje es: ${result.result}`}
+        title="Recinto de origen"
+        description={`Su recinto de origen es: ${result.result}`}
       />
     </>
   )

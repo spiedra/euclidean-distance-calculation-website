@@ -28,7 +28,7 @@ export const navbarItems = [
   {
     id: 3,
     icon: <PublicIcon />,
-    label: 'Genero de estudiante',
+    label: 'Sexo de estudiante',
     route: 'student-gender'
   },
   {
