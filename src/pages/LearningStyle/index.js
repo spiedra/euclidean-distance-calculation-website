@@ -11,7 +11,7 @@ import useModal from '../../hooks/useModal'
 import { createInputs } from '../../services/Posts'
 
 const baseURL =
-  'http://localhost:8080/euclidean-distance-api/learning-style/1/calculation'
+  'https://euclidean-distance-calculation-api.vercel.app/euclidean-distance-api/learning-style/1/calculation'
 
 const LearningStyle = () => {
   const [inputs, setInputs] = useState(defaultValues)
@@ -39,7 +39,8 @@ const LearningStyle = () => {
   return (
     <>
       <Box sx={learningStyles.instructionsContainer}>
-        <h1>Instrucciones</h1>
+        <h1>Estilo de aprendizaje #1</h1>
+        <h2>Instrucciones</h2>
         <Box component="p" sx={learningStyles.paragraph}>
           Para utilizar el instrumento usted debe conceder una calificación alta
           a aquellas palabras que mejor caracterizan la forma en que usted

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
 
 import { Controller, useForm } from 'react-hook-form'
 import { Box, Grid, MenuItem, Button, TextField } from '@mui/material'
@@ -11,9 +10,9 @@ import useModal from '../../hooks/useModal'
 import { createInputs } from '../../services/Posts'
 
 const baseURL =
-  'https://euclidean-distance-calculation-api.vercel.app/euclidean-distance-api/student-campus/calculation'
+  'https://euclidean-distance-calculation-api.vercel.app/euclidean-distance-api/learning-style/2/calculation'
 
-const StudentHomeCampus = () => {
+const LearningStyle2 = () => {
   const [result, setResult] = useState({ result: '' })
   const [isOpen, { setOpen, setClose }] = useModal(false)
 
@@ -23,7 +22,7 @@ const StudentHomeCampus = () => {
     formState: { errors }
   } = useForm({
     defaultValues: {
-      learningStyle: '',
+      campus: '',
       gpa: '',
       genre: ''
     }
@@ -39,21 +38,26 @@ const StudentHomeCampus = () => {
   return (
     <>
       <Box sx={learningStyles.instructionsContainer}>
-        <h1>Recinto de origen</h1>
+        <h1>Estilo de aprendizaje #2</h1>
         <h2>Instrucciones</h2>
         <Box component="p" sx={learningStyles.paragraph}>
-          Para utilizar el instrumento usted debe indicar su estilo de
-          aprendizaje (Asimilador, Acomodador, Divergente, Convergente), su
-          último promedio para matrícula y su sexo.
+          Para utilizar el instrumento usted debe indicar su recinto (Paraíso,
+          Turrialba), su último promedio para matrícula y su sexo.
         </Box>
         <Box component="p">
           Todas las respuestas son buenas, ya que el fin del instrumento es
           describir cómo y no juzgar su habilidad para aprender.
         </Box>
         <Box component="p">
-          Si aún no sabe su estilo de aprendizaje puede descubrirlo en el
-          siguiente test:{' '}
-          <Link to="/learning-style">Estilo de aprendizaje #1</Link>
+          Si aún no sabe acerca de los estilos de aprendizaje puedo descubirlo
+          en el siguiente link:{' '}
+          <a
+            href="https://9brains.es/cuatro-estilos-de-aprendizaje/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Estilos de aprendizaje
+          </a>
         </Box>
         <Box
           component="form"
@@ -76,20 +80,18 @@ const StudentHomeCampus = () => {
             <Grid item>
               <Controller
                 control={control}
-                name="learningStyle"
+                name="campus"
                 rules={{ required: true }}
                 render={({ field: { ...field } }) => (
                   <TextField
                     sx={learningStyles.select}
                     {...field}
                     select
-                    error={!!errors.learningStyle}
-                    label="Estilo de aprendizaje"
+                    error={!!errors.campus}
+                    label="Recinto"
                   >
-                    <MenuItem value={1}>Asimilador</MenuItem>
-                    <MenuItem value={2}>Acomodador</MenuItem>
-                    <MenuItem value={3}>Divergente</MenuItem>
-                    <MenuItem value={4}>Convergente</MenuItem>
+                    <MenuItem value={1}>Paraíso</MenuItem>
+                    <MenuItem value={2}>Turrialba</MenuItem>
                   </TextField>
                 )}
               />
@@ -146,11 +148,11 @@ const StudentHomeCampus = () => {
         open={isOpen}
         handleOpen={setOpen}
         handleClose={setClose}
-        title="Recinto de origen"
-        description={`Su recinto de origen es: ${result.result}`}
+        title="Estilo de aprendizaje"
+        description={`Su estilo de aprendizaje es: ${result.result}`}
       />
     </>
   )
 }
 
-export default StudentHomeCampus
+export default LearningStyle2

@@ -11,9 +11,9 @@ import useModal from '../../hooks/useModal'
 import { createInputs } from '../../services/Posts'
 
 const baseURL =
-  'http://localhost:8080/euclidean-distance-api/student-campus/calculation'
+  'https://euclidean-distance-calculation-api.vercel.app/euclidean-distance-api/student-genre/calculation'
 
-const LearningStyle = () => {
+const StudentGender = () => {
   const [result, setResult] = useState({ result: '' })
   const [isOpen, { setOpen, setClose }] = useModal(false)
 
@@ -39,7 +39,8 @@ const LearningStyle = () => {
   return (
     <>
       <Box sx={learningStyles.instructionsContainer}>
-        <h1>Instrucciones</h1>
+        <h1>Sexo de estudiante</h1>
+        <h2>Instrucciones</h2>
         <Box component="p" sx={learningStyles.paragraph}>
           Para utilizar el instrumento usted debe indicar su estilo de
           aprendizaje (Asimilador, Acomodador, Divergente, Convergente), su
@@ -146,10 +147,12 @@ const LearningStyle = () => {
         handleOpen={setOpen}
         handleClose={setClose}
         title="Sexo de estudiante"
-        description={`Su sexo es: ${result.result}`}
+        description={`Su sexo es: ${
+          result.result === 'M' ? 'Masculino' : 'Femenino'
+        }`}
       />
     </>
   )
 }
 
-export default LearningStyle
+export default StudentGender

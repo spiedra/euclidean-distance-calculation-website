@@ -17,7 +17,7 @@ export const navbarItems = [
     id: 1,
     icon: <PeopleIcon />,
     label: 'Estilo de aprendizaje #2',
-    route: 'learning-style'
+    route: 'learning-style-2'
   },
   {
     id: 2,
