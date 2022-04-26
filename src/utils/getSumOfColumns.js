@@ -31,5 +31,5 @@ export const getSumOfColumns = (inputs) => {
     inputs.Aprendo_mas_de_la_experimentacion +
     inputs.Abierto
 
-  return { ec: ec, or: or, ca: ca, ea: ea }
+  return { CA: ca, EC: ec, EA: ea, OR: or }
 }
