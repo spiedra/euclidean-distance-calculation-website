@@ -8,13 +8,12 @@ import { words, defaultValues } from './consts'
 import { getSumOfColumns } from '../../utils/getSumOfColumns'
 import { createInputs } from '../../services/LearningStyle1/Post'
 import ModalResponse from '../../components/ModalResponse'
+import useModal from '../../hooks/useModal'
 
 const LearningStyle = () => {
   const [inputs, setInputs] = useState(defaultValues)
-  const [result, setResult] = useState({ title: '', description: '' })
-  const [open, setOpen] = useState(false)
-  const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
+  const [result, setResult] = useState({ result: '' })
+  const [isOpen, { setOpen, setClose }] = useModal(false)
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -30,7 +29,7 @@ const LearningStyle = () => {
 
     await createInputs(getSumOfColumns(inputs)).then((response) => {
       setResult(response)
-      setOpen(true)
+      setOpen()
     })
   }
 
@@ -42,7 +41,15 @@ const LearningStyle = () => {
           Para utilizar el instrumento usted debe conceder una calificación alta
           a aquellas palabras que mejor caracterizan la forma en que usted
           aprende, y una calificación baja a las palabras que menos caracterizan
-          su  <a href='https://9brains.es/cuatro-estilos-de-aprendizaje/' target='_blank' rel="noreferrer">estilo de aprendizaje</a>.
+          su{' '}
+          <a
+            href="https://9brains.es/cuatro-estilos-de-aprendizaje/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            estilo de aprendizaje
+          </a>
+          .
         </Box>
         <Box component="p" sx={learningStyles.paragraph}>
           Le puede ser difícil seleccionar las palabras que mejor describen su
@@ -112,9 +119,9 @@ const LearningStyle = () => {
       </Box>
 
       <ModalResponse
-        open={open}
-        handleOpen={handleOpen}
-        handleClose={handleClose}
+        open={isOpen}
+        handleOpen={setOpen}
+        handleClose={setClose}
         title="Estilo de aprendizaje"
         description={`Su tipo de aprendizaje es: ${result.result}`}
       />
