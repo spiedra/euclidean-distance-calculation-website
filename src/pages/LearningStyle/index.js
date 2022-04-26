@@ -6,6 +6,7 @@ import { learningStyles } from './styles'
 import { words, defaultValues } from './consts'
 
 import { getSumOfColumns } from '../../utils/getSumOfColumns'
+import { createInputs } from '../../services/LearningStyle1/Post'
 
 const LearningStyle = () => {
   const [inputs, setInputs] = useState(defaultValues)
@@ -19,10 +20,11 @@ const LearningStyle = () => {
     })
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
 
-    console.log(getSumOfColumns(inputs))
+    const inputsFromAPI = await createInputs(getSumOfColumns(inputs))
+    console.log(inputsFromAPI.result)
   }
 
   return (
