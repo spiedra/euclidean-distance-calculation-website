@@ -6,9 +6,12 @@ import { learningStyles } from './styles'
 import { words, defaultValues } from './consts'
 
 import { getSumOfColumns } from '../../utils/getSumOfColumns'
-import { createInputs } from '../../services/LearningStyle1/Post'
 import ModalResponse from '../../components/ModalResponse'
 import useModal from '../../hooks/useModal'
+import { createInputs } from '../../services/Posts'
+
+const baseURL =
+  'https://euclidean-distance-calculation-api.vercel.app/euclidean-distance-api/learning-style/1/calculation'
 
 const LearningStyle = () => {
   const [inputs, setInputs] = useState(defaultValues)
@@ -24,10 +27,10 @@ const LearningStyle = () => {
     })
   }
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault()
 
-    await createInputs(getSumOfColumns(inputs)).then((response) => {
+    createInputs(baseURL, getSumOfColumns(inputs)).then((response) => {
       setResult(response)
       setOpen()
     })

@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -8,15 +6,18 @@ import { Box, Grid, MenuItem, Button, TextField } from '@mui/material'
 
 import { learningStyles } from './styles'
 
-import { words, defaultValues } from './consts'
-
 import { getSumOfColumns } from '../../utils/getSumOfColumns'
-import { createInputs } from '../../services/LearningStyle1/Post'
 import ModalResponse from '../../components/ModalResponse'
+import useModal from '../../hooks/useModal'
+import { createInputs } from '../../services/Posts'
+
+const baseURL =
+  'https://euclidean-distance-calculation-api.vercel.app/euclidean-distance-api/learning-style/1/calculation'
 
 const LearningStyle = () => {
-  const [inputs, setInputs] = useState(defaultValues)
   const [result, setResult] = useState({ result: '' })
+  const [isOpen, { setOpen, setClose }] = useModal(false)
+
   const {
     control,
     handleSubmit,
@@ -29,8 +30,12 @@ const LearningStyle = () => {
     }
   })
 
-  const onSubmit = async (values) => {
-    alert(JSON.stringify(values))
+  const onSubmit = (values) => {
+    console.log(values)
+    createInputs(baseURL, getSumOfColumns(values)).then((response) => {
+      setResult(response)
+      setOpen()
+    })
   }
 
   return (
@@ -99,7 +104,7 @@ const LearningStyle = () => {
                   <TextField
                     sx={learningStyles.select}
                     {...field}
-                    type='number'
+                    type="number"
                     error={!!errors.gpa}
                     label="Último promedio de matrícula"
                   />
@@ -138,13 +143,13 @@ const LearningStyle = () => {
         </Box>
       </Box>
 
-      {/* <ModalResponse
-        open={open}
-        handleOpen={handleOpen}
-        handleClose={handleClose}
+      <ModalResponse
+        open={isOpen}
+        handleOpen={setOpen}
+        handleClose={setClose}
         title="Estilo de aprendizaje"
         description={`Su tipo de aprendizaje es: ${result.result}`}
-      /> */}
+      />
     </>
   )
 }

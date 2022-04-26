@@ -1,8 +1,6 @@
 import axios from 'axios'
 
-const baseURL = 'https://euclidean-distance-calculation-api.vercel.app/euclidean-distance-api/learning-style/1/calculation'
-
-export const createInputs = async (inputs) => {
+export const createInputs = async (baseURL, inputs) => {
   try {
     const response = await axios.post(baseURL, {
       inputs: inputs
