@@ -1,4 +1,8 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+
 import { Box, Grid, MenuItem, Button, TextField } from '@mui/material'
 
 import { learningStyles } from './styles'
@@ -39,28 +43,18 @@ const LearningStyle = () => {
       <Box sx={learningStyles.instructionsContainer}>
         <h1>Instrucciones</h1>
         <Box component="p" sx={learningStyles.paragraph}>
-          Para utilizar el instrumento usted debe conceder una calificación alta
-          a aquellas palabras que mejor caracterizan la forma en que usted
-          aprende, y una calificación baja a las palabras que menos caracterizan
-          su  <a href='https://9brains.es/cuatro-estilos-de-aprendizaje/' target='_blank' rel="noreferrer">estilo de aprendizaje</a>.
-        </Box>
-        <Box component="p" sx={learningStyles.paragraph}>
-          Le puede ser difícil seleccionar las palabras que mejor describen su
-          estilo de aprendizaje, ya que no hay respuestas correctas o
-          incorrectas.
+          Para utilizar el instrumento usted debe indicar su estilo de
+          aprendizaje (Asimilador, Acomodador, Divergente, Convergente), su
+          último promedio para matrícula y su sexo.
         </Box>
         <Box component="p">
           Todas las respuestas son buenas, ya que el fin del instrumento es
           describir cómo y no juzgar su habilidad para aprender.
         </Box>
-        <Box component="p" sx={learningStyles.paragraph}>
-          De inmediato encontrará nueve series o líneas de cuatro palabras cada
-          una. Ordene de mayor a menor cada serie o juego de cuatro palabras que
-          hay en cada línea, ubicando 4 en la palabra que mejor caracteriza su
-          estilo de aprendizaje, un 3 en la palabra siguiente en cuanto a la
-          correspondencia con su estilo; a la siguiente un 2, y un 1 a la
-          palabra que menos caracteriza su estilo. Tenga cuidado de ubicar un
-          número distinto al lado de cada palabra en la misma línea.
+        <Box component="p">
+          Si aún no sabe su estilo de aprendizaje puede descubrirlo en el
+          siguiente test:{' '}
+          <Link to="/learning-style">Estilo de aprendizaje #1</Link>
         </Box>
         <Box
           component="form"
@@ -81,14 +75,36 @@ const LearningStyle = () => {
             spacing={{ xs: 0.5, sm: 0.5, md: 2 }}
             columns={{ xs: 4, sm: 8, md: 12 }}
           >
-            {words.map((item) => (
-              <Grid item key={item.value}>
+            <Grid item >
                 <TextField
                   sx={learningStyles.select}
-                  name={item.value}
+                  name='learning-style'
                   select
-                  label={item.label}
-                  value={inputs[item.value]}
+                  label='Estilo de aprendizaje'
+                  value={inputs[0]}
+                  onChange={handleChange}
+                >
+                  <MenuItem value={1}>Asimilador</MenuItem>
+                  <MenuItem value={2}>Acomodador</MenuItem>
+                  <MenuItem value={3}>Divergente</MenuItem>
+                  <MenuItem value={4}>Convergente</MenuItem>
+                </TextField>
+              </Grid>
+              <Grid item >
+                <TextField
+                  sx={learningStyles.select}
+                  name='learning-style'
+                  label='Último promedio de matrícula'
+                  value={inputs[0]}
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item >
+                <TextField
+                  sx={learningStyles.select}
+                  name='learning-style'
+                  label='Último promedio de matrícula'
+                  value={inputs[0]}
                   onChange={handleChange}
                 >
                   <MenuItem value={1}>1</MenuItem>
@@ -97,7 +113,6 @@ const LearningStyle = () => {
                   <MenuItem value={4}>4</MenuItem>
                 </TextField>
               </Grid>
-            ))}
           </Grid>
           <Button
             variant="contained"
