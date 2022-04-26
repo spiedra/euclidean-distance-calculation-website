@@ -42,7 +42,7 @@ const LearningStyle = () => {
           Para utilizar el instrumento usted debe conceder una calificación alta
           a aquellas palabras que mejor caracterizan la forma en que usted
           aprende, y una calificación baja a las palabras que menos caracterizan
-          su estilo de aprendizaje.
+          su  <a href='https://9brains.es/cuatro-estilos-de-aprendizaje/'>estilo de aprendizaje</a>.
         </Box>
         <Box component="p" sx={learningStyles.paragraph}>
           Le puede ser difícil seleccionar las palabras que mejor describen su
