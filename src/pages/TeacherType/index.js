@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
 
 import { Controller, useForm } from 'react-hook-form'
@@ -10,7 +11,7 @@ import useModal from '../../hooks/useModal'
 import { createInputs } from '../../services/Posts'
 
 const baseURL =
-  'https://euclidean-distance-calculation-api.vercel.app/euclidean-distance-api/student-genre/calculation'
+  'http://localhost:8080/euclidean-distance-api/teacher-type/calculation'
 
 const TeacherType = () => {
   const [result, setResult] = useState({ result: '' })
@@ -24,7 +25,12 @@ const TeacherType = () => {
     defaultValues: {
       age: '',
       genre: '',
-      campus: ''
+      experience: '',
+      numberTimesTeaching: '',
+      backgroundDiscipline: '',
+      computerSkills: '',
+      expTechnologyTeaching: '',
+      expWebsiteUse: ''
     }
   })
 
@@ -43,7 +49,7 @@ const TeacherType = () => {
         <Box component="p" sx={learningStyles.paragraph}>
           Para utilizar el instrumento usted debe indicar su edad, sexo, de
           forma autoevaluativa su experiencia (Principiante, Intermedio,
-          Avanzado), numero de veces que ha impartido el curso (Nunca, 1 a 5
+          Avanzado), número de veces que ha impartido el curso (Nunca, 1 a 5
           veces, más de 5 veces), diciplina o area de especialización (Toma de
           decisiones, Diseño de la red, Otros), sus habilidades en el uso de las
           computadoras (Bajo, Promedio, Alto), su experiencia en el uso de la
@@ -108,29 +114,9 @@ const TeacherType = () => {
                     error={!!errors.genre}
                     label="Sexo"
                   >
-                    <MenuItem value="F">Female</MenuItem>
-                    <MenuItem value="M">Male</MenuItem>
-                    <MenuItem value="NA">No indicado</MenuItem>
-                  </TextField>
-                )}
-              />
-            </Grid>
-            <Grid item>
-              <Controller
-                control={control}
-                name="experience"
-                rules={{ required: true }}
-                render={({ field: { ...field } }) => (
-                  <TextField
-                    sx={learningStyles.select}
-                    {...field}
-                    select
-                    error={!!errors.campus}
-                    label="Experiencia impartiendo el curso"
-                  >
-                    <MenuItem value="B">Principiante</MenuItem>
-                    <MenuItem value="I">Intermedio</MenuItem>
-                    <MenuItem value="A">Avanzado</MenuItem>
+                    <MenuItem value="1">Male</MenuItem>
+                    <MenuItem value="2">Female</MenuItem>
+                    <MenuItem value="3">No indicado</MenuItem>
                   </TextField>
                 )}
               />
@@ -146,11 +132,31 @@ const TeacherType = () => {
                     {...field}
                     select
                     error={!!errors.experience}
-                    label="Numero de veces impartiendo el curso"
+                    label="Experiencia impartiendo el curso"
                   >
-                    <MenuItem value="B">Nunca</MenuItem>
-                    <MenuItem value="I">De 1 a 5 veces</MenuItem>
-                    <MenuItem value="A">Más de 5 veces</MenuItem>
+                    <MenuItem value="1">Principiante</MenuItem>
+                    <MenuItem value="2">Intermedio</MenuItem>
+                    <MenuItem value="3">Avanzado</MenuItem>
+                  </TextField>
+                )}
+              />
+            </Grid>
+            <Grid item>
+              <Controller
+                control={control}
+                name="numberTimesTeaching"
+                rules={{ required: true }}
+                render={({ field: { ...field } }) => (
+                  <TextField
+                    sx={learningStyles.select}
+                    {...field}
+                    select
+                    error={!!errors.numberTimesTeaching}
+                    label="Número de veces impartiendo el curso"
+                  >
+                    <MenuItem value="1">Nunca</MenuItem>
+                    <MenuItem value="2">De 1 a 5 veces</MenuItem>
+                    <MenuItem value="3">Más de 5 veces</MenuItem>
                   </TextField>
                 )}
               />
@@ -168,9 +174,9 @@ const TeacherType = () => {
                     error={!!errors.backgroundDiscipline}
                     label="Disciplina o area de especialización"
                   >
-                    <MenuItem value="DM">Toma de decisiones</MenuItem>
-                    <MenuItem value="ND">Diseño de la red</MenuItem>
-                    <MenuItem value="O">Otras</MenuItem>
+                    <MenuItem value="1">Toma de decisiones</MenuItem>
+                    <MenuItem value="2">Diseño de la red</MenuItem>
+                    <MenuItem value="3">Otras</MenuItem>
                   </TextField>
                 )}
               />
@@ -188,9 +194,9 @@ const TeacherType = () => {
                     error={!!errors.computerSkills}
                     label="Habilidades en el uso de computadoras"
                   >
-                    <MenuItem value="L">Baja</MenuItem>
-                    <MenuItem value="A">Promedio</MenuItem>
-                    <MenuItem value="H">Alta</MenuItem>
+                    <MenuItem value="1">Baja</MenuItem>
+                    <MenuItem value="3">Promedio</MenuItem>
+                    <MenuItem value="2">Alta</MenuItem>
                   </TextField>
                 )}
               />
@@ -208,9 +214,9 @@ const TeacherType = () => {
                     error={!!errors.expTechnologyTeaching}
                     label="Experiencia enseñando con tecnologías web"
                   >
-                    <MenuItem value="N">Nunca</MenuItem>
-                    <MenuItem value="S">A veces</MenuItem>
-                    <MenuItem value="O">A menudo</MenuItem>
+                    <MenuItem value="1">Nunca</MenuItem>
+                    <MenuItem value="2">A veces</MenuItem>
+                    <MenuItem value="3">A menudo</MenuItem>
                   </TextField>
                 )}
               />
@@ -228,9 +234,9 @@ const TeacherType = () => {
                     error={!!errors.expWebsiteUse}
                     label="Experiencia en el uso de sitios web"
                   >
-                    <MenuItem value="N">Nunca</MenuItem>
-                    <MenuItem value="S">A veces</MenuItem>
-                    <MenuItem value="O">A menudo</MenuItem>
+                    <MenuItem value="1">Nunca</MenuItem>
+                    <MenuItem value="2">A veces</MenuItem>
+                    <MenuItem value="3">A menudo</MenuItem>
                   </TextField>
                 )}
               />
@@ -252,10 +258,8 @@ const TeacherType = () => {
         open={isOpen}
         handleOpen={setOpen}
         handleClose={setClose}
-        title="Sexo de estudiante"
-        description={`Su sexo es: ${
-          result.result === 'M' ? 'Masculino' : 'Femenino'
-        }`}
+        title="Tipo de profesor"
+        description={`Usted es un tipo de profesor: ${result.result}`}
       />
     </>
   )

@@ -90,8 +90,8 @@ const LearningStyle2 = () => {
                     error={!!errors.campus}
                     label="Recinto"
                   >
-                    <MenuItem value={1}>Paraíso</MenuItem>
-                    <MenuItem value={2}>Turrialba</MenuItem>
+                    <MenuItem value={1}>Turrialba</MenuItem>
+                    <MenuItem value={2}>Paraíso</MenuItem>
                   </TextField>
                 )}
               />

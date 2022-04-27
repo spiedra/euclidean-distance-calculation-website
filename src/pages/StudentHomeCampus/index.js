@@ -11,7 +11,7 @@ import useModal from '../../hooks/useModal'
 import { createInputs } from '../../services/Posts'
 
 const baseURL =
-  'https://euclidean-distance-calculation-api.vercel.app/euclidean-distance-api/student-campus/calculation'
+  'http://localhost:8080/euclidean-distance-api/student-campus/calculation'
 
 const StudentHomeCampus = () => {
   const [result, setResult] = useState({ result: '' })
