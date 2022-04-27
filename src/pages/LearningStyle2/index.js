@@ -65,7 +65,7 @@ const LearningStyle2 = () => {
           sx={{
             '& .MuiTextField-root': {
               my: 1,
-              width: '41ch'
+              width: { xs: '37ch', md: '41ch' }
             }
           }}
           autoComplete="off"

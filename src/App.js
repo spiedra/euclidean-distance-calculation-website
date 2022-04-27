@@ -16,7 +16,6 @@ function App () {
           sx={{
             flexGrow: 1,
             paddingTop: 6,
-            paddingLeft: 2,
             width: { sm: `calc(100% - ${drawerWidth}px)` }
           }}
         >
