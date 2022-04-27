@@ -10,7 +10,7 @@ import useModal from '../../hooks/useModal'
 import { createInputs } from '../../services/Posts'
 
 const baseURL =
-  'https://euclidean-distance-calculation-api.vercel.app/euclidean-distance-api//network-classification/calculation'
+  'https://euclidean-distance-calculation-api.vercel.app/euclidean-distance-api/network-classification/calculation'
 
 const NetworkClassification = () => {
   const [result, setResult] = useState({ result: '' })
