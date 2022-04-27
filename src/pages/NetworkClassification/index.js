@@ -10,7 +10,7 @@ import useModal from '../../hooks/useModal'
 import { createInputs } from '../../services/Posts'
 
 const baseURL =
-  'http://localhost:8080/euclidean-distance-api/teacher-type/calculation'
+  'https://euclidean-distance-calculation-api.vercel.app/euclidean-distance-api//network-classification/calculation'
 
 const NetworkClassification = () => {
   const [result, setResult] = useState({ result: '' })
@@ -22,14 +22,10 @@ const NetworkClassification = () => {
     formState: { errors }
   } = useForm({
     defaultValues: {
-      age: '',
-      genre: '',
-      experience: '',
-      numberTimesTeaching: '',
-      backgroundDiscipline: '',
-      computerSkills: '',
-      expTechnologyTeaching: '',
-      expWebsiteUse: ''
+      reliability: '',
+      linksNumber: '',
+      networkCapacity: '',
+      networkCost: ''
     }
   })
 
@@ -48,7 +44,7 @@ const NetworkClassification = () => {
         <Box component="p" sx={learningStyles.paragraph}>
           Para utilizar el instrumento usted debe indicar la fiabilidad de la
           red (de 2 a 5), número de enlaces (de 7 a 20), la capacidad total de
-          la red (Baja, Media, Alta) y el coste de la red (bajo, medio, alto).
+          la red (Baja, Media, Alta) y el coste de la red (Bajo, Medio, Alto).
         </Box>
         <Box
           component="form"
@@ -56,7 +52,7 @@ const NetworkClassification = () => {
           sx={{
             '& .MuiTextField-root': {
               my: 1,
-              width: { xs: '41ch', sm: '41ch' }
+              width: '41ch'
             }
           }}
           autoComplete="off"
@@ -71,21 +67,20 @@ const NetworkClassification = () => {
             <Grid item>
               <Controller
                 control={control}
-                name="age"
+                name="reliability"
                 rules={{ required: true }}
                 render={({ field: { ...field } }) => (
                   <TextField
                     sx={learningStyles.select}
                     {...field}
                     select
-                    error={!!errors.age}
-                    label="Edad"
+                    error={!!errors.reliability}
+                    label="Fiabilidad de la red"
                   >
-                    <MenuItem value="1">Menor o igual a 30 años</MenuItem>
-                    <MenuItem value="2">
-                      Mayor a 30 y menor o igual a 55 años
-                    </MenuItem>
-                    <MenuItem value="3">Mayor a 55 años</MenuItem>
+                    <MenuItem value="2">2</MenuItem>
+                    <MenuItem value="3">3</MenuItem>
+                    <MenuItem value="4">4</MenuItem>
+                    <MenuItem value="5">5</MenuItem>
                   </TextField>
                 )}
               />
@@ -93,19 +88,30 @@ const NetworkClassification = () => {
             <Grid item>
               <Controller
                 control={control}
-                name="genre"
+                name="linksNumber"
                 rules={{ required: true }}
                 render={({ field: { ...field } }) => (
                   <TextField
                     sx={learningStyles.select}
                     {...field}
                     select
-                    error={!!errors.genre}
-                    label="Sexo"
+                    error={!!errors.linksNumber}
+                    label="Número de enlaces"
                   >
-                    <MenuItem value="1">Male</MenuItem>
-                    <MenuItem value="2">Female</MenuItem>
-                    <MenuItem value="3">No indicado</MenuItem>
+                    <MenuItem value="7">7</MenuItem>
+                    <MenuItem value="8">8</MenuItem>
+                    <MenuItem value="9">9</MenuItem>
+                    <MenuItem value="10">10</MenuItem>
+                    <MenuItem value="11">11</MenuItem>
+                    <MenuItem value="12">12</MenuItem>
+                    <MenuItem value="13">13</MenuItem>
+                    <MenuItem value="14">14</MenuItem>
+                    <MenuItem value="15">15</MenuItem>
+                    <MenuItem value="16">16</MenuItem>
+                    <MenuItem value="17">17</MenuItem>
+                    <MenuItem value="18">18</MenuItem>
+                    <MenuItem value="19">19</MenuItem>
+                    <MenuItem value="20">20</MenuItem>
                   </TextField>
                 )}
               />
@@ -113,79 +119,19 @@ const NetworkClassification = () => {
             <Grid item>
               <Controller
                 control={control}
-                name="experience"
+                name="networkCapacity"
                 rules={{ required: true }}
                 render={({ field: { ...field } }) => (
                   <TextField
                     sx={learningStyles.select}
                     {...field}
                     select
-                    error={!!errors.experience}
-                    label="Experiencia impartiendo el curso"
-                  >
-                    <MenuItem value="1">Principiante</MenuItem>
-                    <MenuItem value="2">Intermedio</MenuItem>
-                    <MenuItem value="3">Avanzado</MenuItem>
-                  </TextField>
-                )}
-              />
-            </Grid>
-            <Grid item>
-              <Controller
-                control={control}
-                name="numberTimesTeaching"
-                rules={{ required: true }}
-                render={({ field: { ...field } }) => (
-                  <TextField
-                    sx={learningStyles.select}
-                    {...field}
-                    select
-                    error={!!errors.numberTimesTeaching}
-                    label="Numero de veces impartiendo el curso"
-                  >
-                    <MenuItem value="1">Nunca</MenuItem>
-                    <MenuItem value="2">De 1 a 5 veces</MenuItem>
-                    <MenuItem value="3">Más de 5 veces</MenuItem>
-                  </TextField>
-                )}
-              />
-            </Grid>
-            <Grid item>
-              <Controller
-                control={control}
-                name="backgroundDiscipline"
-                rules={{ required: true }}
-                render={({ field: { ...field } }) => (
-                  <TextField
-                    sx={learningStyles.select}
-                    {...field}
-                    select
-                    error={!!errors.backgroundDiscipline}
-                    label="Disciplina o area de especialización"
-                  >
-                    <MenuItem value="1">Toma de decisiones</MenuItem>
-                    <MenuItem value="2">Diseño de la red</MenuItem>
-                    <MenuItem value="3">Otras</MenuItem>
-                  </TextField>
-                )}
-              />
-            </Grid>
-            <Grid item>
-              <Controller
-                control={control}
-                name="computerSkills"
-                rules={{ required: true }}
-                render={({ field: { ...field } }) => (
-                  <TextField
-                    sx={learningStyles.select}
-                    {...field}
-                    select
-                    error={!!errors.computerSkills}
-                    label="Habilidades en el uso de computadoras"
+                    error={!!errors.networkCapacity}
+                    label="Capacidad total de la red"
                   >
                     <MenuItem value="1">Baja</MenuItem>
-                    <MenuItem value="3">Promedio</MenuItem>
-                    <MenuItem value="2">Alta</MenuItem>
+                    <MenuItem value="2">Media</MenuItem>
+                    <MenuItem value="3">Alta</MenuItem>
                   </TextField>
                 )}
               />
@@ -193,39 +139,19 @@ const NetworkClassification = () => {
             <Grid item>
               <Controller
                 control={control}
-                name="expTechnologyTeaching"
+                name="networkCost"
                 rules={{ required: true }}
                 render={({ field: { ...field } }) => (
                   <TextField
                     sx={learningStyles.select}
                     {...field}
                     select
-                    error={!!errors.expTechnologyTeaching}
-                    label="Experiencia enseñando con tecnologías web"
+                    error={!!errors.networkCost}
+                    label="Coste de la red"
                   >
-                    <MenuItem value="1">Nunca</MenuItem>
-                    <MenuItem value="2">A veces</MenuItem>
-                    <MenuItem value="3">A menudo</MenuItem>
-                  </TextField>
-                )}
-              />
-            </Grid>
-            <Grid item>
-              <Controller
-                control={control}
-                name="expWebsiteUse"
-                rules={{ required: true }}
-                render={({ field: { ...field } }) => (
-                  <TextField
-                    sx={learningStyles.select}
-                    {...field}
-                    select
-                    error={!!errors.expWebsiteUse}
-                    label="Experiencia en el uso de sitios web"
-                  >
-                    <MenuItem value="1">Nunca</MenuItem>
-                    <MenuItem value="2">A veces</MenuItem>
-                    <MenuItem value="3">A menudo</MenuItem>
+                    <MenuItem value="1">Bajo</MenuItem>
+                    <MenuItem value="2">Medio</MenuItem>
+                    <MenuItem value="3">Alto</MenuItem>
                   </TextField>
                 )}
               />
@@ -247,8 +173,8 @@ const NetworkClassification = () => {
         open={isOpen}
         handleOpen={setOpen}
         handleClose={setClose}
-        title="Tipo de profesor"
-        description={`Usted es un tipo de profesor: ${result.result}`}
+        title="Clasificación de redes"
+        description={`La clase de la red es: ${result.result}`}
       />
     </>
   )

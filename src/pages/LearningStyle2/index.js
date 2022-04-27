@@ -65,7 +65,7 @@ const LearningStyle2 = () => {
           sx={{
             '& .MuiTextField-root': {
               my: 1,
-              width: { xs: '25ch', sm: '30ch' }
+              width: '41ch'
             }
           }}
           autoComplete="off"
@@ -107,7 +107,7 @@ const LearningStyle2 = () => {
                     {...field}
                     type="number"
                     error={!!errors.gpa}
-                    label="Numero"
+                    label="Último promedio de matrícula"
                   />
                 )}
               />

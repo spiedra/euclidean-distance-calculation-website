@@ -11,7 +11,7 @@ import useModal from '../../hooks/useModal'
 import { createInputs } from '../../services/Posts'
 
 const baseURL =
-  'http://localhost:8080/euclidean-distance-api/teacher-type/calculation'
+  'https://euclidean-distance-calculation-api.vercel.app/euclidean-distance-api/teacher-type/calculation'
 
 const TeacherType = () => {
   const [result, setResult] = useState({ result: '' })
@@ -67,7 +67,7 @@ const TeacherType = () => {
           sx={{
             '& .MuiTextField-root': {
               my: 1,
-              width: { xs: '41ch', sm: '41ch' }
+              width: '41ch'
             }
           }}
           autoComplete="off"
