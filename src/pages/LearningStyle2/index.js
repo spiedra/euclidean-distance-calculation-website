@@ -49,7 +49,7 @@ const LearningStyle2 = () => {
           describir cómo y no juzgar su habilidad para aprender.
         </Box>
         <Box component="p">
-          Si aún no sabe acerca de los estilos de aprendizaje puedo descubirlo
+          Si aún no sabe acerca de los estilos de aprendizaje puede descubirlo
           en el siguiente link:{' '}
           <a
             href="https://9brains.es/cuatro-estilos-de-aprendizaje/"
@@ -107,7 +107,7 @@ const LearningStyle2 = () => {
                     {...field}
                     type="number"
                     error={!!errors.gpa}
-                    label="Último promedio de matrícula"
+                    label="Numero"
                   />
                 )}
               />
